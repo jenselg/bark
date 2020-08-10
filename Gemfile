@@ -56,3 +56,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "devise", "~> 4.7"
 
 gem "foreman", "~> 0.87.1"
+
+# fake data
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
