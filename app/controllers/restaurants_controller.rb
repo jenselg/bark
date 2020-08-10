@@ -11,7 +11,13 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/1
   # GET /restaurants/1.json
   def show
-    @reviews = @restaurant.reviews
+    @reviews = @restaurant.reviews.order('updated_at DESC')
+    if @reviews.count > 0
+      rating_arr = @reviews.uniq.pluck(:rating)
+      @average_rating = rating_arr.sum / rating_arr.size
+    else
+      @average_rating = 0 # note: returning an integer instead of nil so we can expect to work with 1 datatype
+    end
     @new_review = Review.new if current_user
   end
 
@@ -45,7 +51,8 @@ class RestaurantsController < ApplicationController
   # PATCH/PUT /restaurants/1.json
   def update
     respond_to do |format|
-      if @restaurant.update(restaurant_params)
+      if current_user.id == @restaurant.user_id
+        @restaurant.update(restaurant_params)
         format.html { redirect_to @restaurant, notice: 'Restaurant was successfully updated.' }
         format.json { render :show, status: :ok, location: @restaurant }
       else
@@ -58,10 +65,15 @@ class RestaurantsController < ApplicationController
   # DELETE /restaurants/1
   # DELETE /restaurants/1.json
   def destroy
-    @restaurant.destroy
     respond_to do |format|
-      format.html { redirect_to restaurants_url, notice: 'Restaurant was successfully destroyed.' }
-      format.json { head :no_content }
+      if current_user.id == @restaurant.user_id
+        @restaurant.destroy
+        format.html { redirect_to restaurants_url, notice: 'Restaurant was successfully destroyed.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to restaurants_url, notice: 'Invalid restaurant.' }
+        format.json { status :bad_request }
+      end
     end
   end
 

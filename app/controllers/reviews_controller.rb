@@ -10,9 +10,9 @@ class ReviewsController < ApplicationController
   end
 
 def destroy
-    @restaurant = Post.find(params[:restaurant_id])
+    @restaurant = Restaurant.find(params[:restaurant_id])
     @review = @restaurant.reviews.find(params[:id])
-    @review.destroy
+    @review.destroy if @review.user.id == current_user.id
     redirect_to restaurant_path(@restaurant)
 end
 end

@@ -14,28 +14,29 @@ This repository is a very bare-bones Ruby On Rails app called "Bark" that allows
 
 ### Review Order
 
-The newest reviews should be at the top of the list. 
+[OK] The newest reviews should be at the top of the list. 
 
 ### Comment Deletion
 
-Users need to be able to delete their own comments. There is already a button, but it doesn't work. 
+[OK] Users need to be able to delete their own comments. There is already a button, but it doesn't work. 
 
 ### Average Rating
 
-On the restaurant show page we need to see what it's 5 star rating is. 
+[OK] On the restaurant show page we need to see what it's 5 star rating is. 
 
 ### CSS Issues
-There seems to be some funky CSS hover animations going on, especially in
+
+[OK] There seems to be some funky CSS hover animations going on, especially in
 the navbar. Clean these up so things are more readable and pretty. 
 
 ### Security Problem
 
-We noticed that anyone can modify or delete any restaurant. Please make sure 
+[OK] We noticed that anyone can modify or delete any restaurant. Please make sure 
 that only the restaurant owner has this access. 
 
 ### Missing Home Page
 
-Our app doesn't have a home page yet! We'd like there to be one that lists all
+[OK] Our app doesn't have a home page yet! We'd like there to be one that lists all
 restaurants ranked by rating. If it was paginated that would be a plus! 
 
 ### Owner Alerts
